@@ -1,7 +1,7 @@
 import pygame
 from game.game_engine import GameEngine
 
-# Initialize pygame
+# Initialize pygame/Start application
 pygame.init()
 
 # Screen dimensions
