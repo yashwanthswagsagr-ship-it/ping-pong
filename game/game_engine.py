@@ -2,6 +2,8 @@ import pygame
 from .paddle import Paddle
 from .ball import Ball
 
+# Game Engine
+
 WHITE = (255, 255, 255)
 
 class GameEngine:
