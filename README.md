@@ -13,7 +13,8 @@ A partially working version of a ping pong game with:
 - Score display
 
 You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional. 
-**Use ChatGPT as the LLM for vibecoding in this Lab.**
+
+### **Use ChatGPT as the LLM for vibecoding in this Lab.**
 
 ---
 
