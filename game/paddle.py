@@ -16,7 +16,12 @@ class Paddle:
         return pygame.Rect(self.x, self.y, self.width, self.height)
 
     def auto_track(self, ball, screen_height):
-        if ball.y < self.y:
-            self.move(-self.speed, screen_height)
-        elif ball.y > self.y + self.height:
-            self.move(self.speed, screen_height)
+    # Small delay factor — AI doesn't move every frame
+        reaction_delay = 10  # higher = slower AI reaction
+        if pygame.time.get_ticks() % reaction_delay == 0:
+        # Follow the ball with a limited tracking ability
+            target_y = ball.y - (self.height // 2)
+            if self.y + self.height / 2 < target_y:
+                self.move(self.speed - 2, screen_height)
+            elif self.y + self.height / 2 > target_y:
+                self.move(-self.speed + 2, screen_height)

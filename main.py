@@ -37,5 +37,20 @@ def main():
 
     pygame.quit()
 
+def ask_replay():
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_3:
+                    return 2
+                elif event.key == pygame.K_5:
+                    return 3
+                elif event.key == pygame.K_7:
+                    return 4
+                elif event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit()
+
+
 if __name__ == "__main__":
     main()

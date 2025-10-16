@@ -11,8 +11,8 @@ class Ball:
         self.height = height
         self.screen_width = screen_width
         self.screen_height = screen_height
-        self.velocity_x = random.choice([-5, 5])
-        self.velocity_y = random.choice([-3, 3])
+        self.velocity_x = random.choice([-8, 8])
+        self.velocity_y = random.choice([-5, 5])
 
     def move(self):
         self.x += self.velocity_x
@@ -25,6 +25,17 @@ class Ball:
         if self.rect().colliderect(player.rect()) or self.rect().colliderect(ai.rect()):
             self.velocity_x *= -1
 
+        # Increase speed slightly after each hit
+        if self.velocity_x > 0:
+            self.velocity_x += 0.5
+        else:
+            self.velocity_x -= 0.5
+
+        if self.velocity_y > 0:
+            self.velocity_y += 0.2
+        else:
+            self.velocity_y -= 0.2
+
     def reset(self):
         self.x = self.original_x
         self.y = self.original_y
@@ -33,3 +44,16 @@ class Ball:
 
     def rect(self):
         return pygame.Rect(self.x, self.y, self.width, self.height)
+    
+    def check_collision(self, player, ai):
+        ball_rect = self.rect()
+        player_rect = player.rect()
+        ai_rect = ai.rect()
+
+        if ball_rect.colliderect(player_rect):
+            self.x = player_rect.right  # prevent sticking
+            self.velocity_x = abs(self.velocity_x)
+
+        elif ball_rect.colliderect(ai_rect):
+            self.x = ai_rect.left - self.width
+            self.velocity_x = -abs(self.velocity_x)
